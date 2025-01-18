@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Crypto Wallet Notifications</title>
+  <style>
+    /* Light Theme */
+    :root {
+      --bg-color: #f4f4f9;
+      --text-color: #333;
+      --primary-color: #1e88e5;
+      --secondary-color: #e3f2fd;
+      --card-bg: #fff;
+      --icon-color: rgba(128, 128, 128, 0.7);
+    }
+
+    /* Dark Theme */
+    [data-theme="dark"] {
+      --bg-color: #121212;
+      --text-color: #e0e0e0;
+      --primary-color: #bb86fc;
+      --secondary-color: #1a1a1a;
+      --card-bg: #1f1f1f;
+      --icon-color: rgba(255, 255, 255, 0.7);
+    }
+
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background-color: var(--bg-color);
+      color: var(--text-color);
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+      transition: background-color 0.3s, color 0.3s;
+    }
+
+    /* Header */
+    .header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background-color: var(--primary-color);
+      color: white;
+      padding: 15px 20px;
+    }
+
+    .header .title {
+      font-size: 1.5rem;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    .header .nav {
+      display: flex;
+      gap: 20px;
+    }
+
+    .header .nav a {
+      color: white;
+      text-decoration: none;
+      font-size: 1rem;
+      cursor: pointer;
+    }
+
+    /* Dark Mode Toggle */
+    .dark-mode-toggle {
+      position: fixed;
+      bottom: 100px;
+      right: 20px;
+      z-index: 9999;
+      background: none;
+      border: none;
+      cursor: pointer;
+      font-size: 2rem;
+      color: var(--icon-color);
+      opacity: 0.7;
+      transition: opacity 0.3s, transform 0.3s;
+    }
+
+    .dark-mode-toggle:hover {
+      opacity: 1;
+      transform: scale(1.2);
+    }
+
+    /* Main Content */
+    .content {
+      flex: 1;
+    }
+
+    .section {
+      display: none;
+      padding: 50px 20px;
+      text-align: center;
+    }
+
+    .section.active {
+      display: block;
+    }
+
+    /* Hero Section */
+    .hero {
+      background-color: var(--secondary-color);
+    }
+
+    .hero h1 {
+      font-size: 2.5rem;
+      margin-bottom: 20px;
+    }
+
+    .hero p {
+      font-size: 1.2rem;
+      margin-bottom: 30px;
+    }
+
+    .hero button {
+      background-color: var(--primary-color);
+      color: white;
+      border: none;
+      padding: 15px 30px;
+      border-radius: 5px;
+      font-size: 1.1rem;
+      font-weight: bold;
+      cursor: pointer;
+      transition: background-color 0.3s, transform 0.3s;
+    }
+
+    .hero button:hover {
+      background-color: #1565c0;
+      transform: scale(1.05);
+    }
+
+    /* Features Section */
+    .features h2 {
+      margin-bottom: 20px;
+    }
+
+    .features-summary {
+      margin-bottom: 30px;
+      font-size: 1.2rem;
+    }
+
+    .features-table {
+      margin: 0 auto;
+      width: 80%;
+      border-collapse: collapse;
+    }
+
+    .features-table th,
+    .features-table td {
+      border: 1px solid var(--text-color);
+      padding: 10px;
+      text-align: left;
+    }
+
+    .features-table th {
+      background-color: var(--primary-color);
+      color: white;
+    }
+
+    .features-table td {
+      background-color: var(--card-bg);
+      color: var(--text-color);
+    }
+
+    /* Footer */
+    .footer {
+      text-align: center;
+      padding: 20px;
+      background-color: var(--primary-color);
+      color: white;
+    }
+  </style>
+</head>
+<body>
+  <!-- Header -->
+  <div class="header">
+    <div class="title" onclick="navigate('hero')">CryptoBot</div>
+    <div class="nav">
+      <a onclick="navigate('features')">Features</a>
+      <a onclick="navigate('pricing')">Pricing</a>
+      <a onclick="navigate('faq')">FAQs</a>
+    </div>
+  </div>
+
+  <!-- Main Content -->
+  <div class="content">
+    <div class="section hero active" id="hero">
+      <h1>Get Real-Time Crypto Wallet Notifications</h1>
+      <p>Track Bitcoin and Dogecoin transactions for just $0.10 per wallet per month.</p>
+      <button onclick="navigate('features')">Learn More</button>
+    </div>
+
+    <div class="section" id="features">
+      <h2>Features</h2>
+      <p class="features-summary">
+        Discover the supported blockchain networks for WebSocket (WSS) connections on NowNodes.
+      </p>
+      <table class="features-table">
+        <thead>
+          <tr>
+            <th>Blockchain</th>
+            <th>Status</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Bitcoin (BTC)</td>
+            <td>Available</td>
+          </tr>
+          <tr>
+            <td>Dogecoin (DOGE)</td>
+            <td>Available</td>
+          </tr>
+          <tr>
+            <td>Ethereum (ETH)</td>
+            <td>Coming Soon</td>
+          </tr>
+          <tr>
+            <td>Litecoin (LTC)</td>
+            <td>Coming Soon</td>
+          </tr>
+          <tr>
+            <td>Dash (DASH)</td>
+            <td>Coming Soon</td>
+          </tr>
+          <tr>
+            <td>Bitcoin Cash (BCH)</td>
+            <td>Coming Soon</td>
+          </tr>
+          <tr>
+            <td>Zcash (ZEC)</td>
+            <td>Coming Soon</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="section" id="pricing">
+      <h2>Pricing</h2>
+      <p>Simple pricing: $0.10 per wallet for 30 days. Bulk tracking discounts available.</p>
+    </div>
+
+    <div class="section" id="faq">
+      <h2>Frequently Asked Questions</h2>
+      <p>Got questions? Contact us to learn more about our services.</p>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <div class="footer">
+    <p>&copy; 2025 CryptoBot. All Rights Reserved.</p>
+  </div>
+
+  <!-- Dark Mode Toggle -->
+  <button class="dark-mode-toggle" id="darkModeToggle">🌙</button>
+
+  <script>
+    // Navigation Functionality
+    function navigate(sectionId) {
+      document.querySelectorAll(".section").forEach((section) => {
+        section.classList.remove("active");
+      });
+      document.getElementById(sectionId).classList.add("active");
+    }
+
+    // Dark Mode Toggle
+    const darkModeToggle = document.getElementById("darkModeToggle");
+
+    darkModeToggle.addEventListener("click", () => {
+      const currentTheme = document.documentElement.getAttribute("data-theme");
+      const newTheme = currentTheme === "dark" ? "light" : "dark";
+      document.documentElement.setAttribute("data-theme", newTheme);
+      darkModeToggle.textContent = newTheme === "dark" ? "☀️" : "🌙";
+    });
+
+    // Initialize
+    document.documentElement.setAttribute("data-theme", "light");
+  </script>
